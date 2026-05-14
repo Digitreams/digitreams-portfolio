@@ -603,10 +603,13 @@ section { position: relative; z-index: 1; }
   font-weight: 600;
 }
 
-/* VIDEO GRID */
+/* ═════════════════════════════ */
+/* VIDEO GRID (UPDATED 9:16 CSS) */
+/* ═════════════════════════════ */
 .vid-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  /* Changed min-width from 310px to 260px for better vertical card spacing */
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
 }
 
@@ -617,6 +620,8 @@ section { position: relative; z-index: 1; }
   overflow: hidden;
   transition: all 0.3s;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .vid-card:hover {
   transform: translateY(-6px);
@@ -626,35 +631,16 @@ section { position: relative; z-index: 1; }
 
 .vid-frame {
   position: relative;
-  padding-top: 56.25%;
+  /* 9:16 Vertical Ratio Formula: (16/9)*100 = 177.77% */
+  padding-top: 177.77%; 
   background: #000;
+  border-bottom: 1px solid var(--border);
 }
 .vid-frame iframe {
   position: absolute;
   inset: 0;
   width: 100%; height: 100%;
   border: none;
-}
-.vid-placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: linear-gradient(135deg, #0a0a15, #1a1a00);
-}
-.vid-play {
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  background: var(--gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  color: #000;
-  box-shadow: 0 0 30px rgba(255,184,0,0.5);
 }
 .vid-badge {
   position: absolute;
@@ -679,12 +665,13 @@ section { position: relative; z-index: 1; }
   font-weight: 700;
 }
 
-.vid-body { padding: 18px; }
+.vid-body { padding: 18px; flex-grow: 1; }
 .vid-title {
   font-family: var(--font-ui);
   font-size: 0.98rem;
   font-weight: 600;
   margin-bottom: 6px;
+  line-height: 1.3;
 }
 .vid-desc { font-size: 0.8rem; color: var(--muted2); line-height: 1.5; margin-bottom: 12px; }
 .vid-tags { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -697,7 +684,6 @@ section { position: relative; z-index: 1; }
   border: 1px solid var(--border2);
 }
 .vtag.g { background: rgba(0,229,160,0.08); color: var(--green); border-color: rgba(0,229,160,0.2); }
-.vtag.b { background: rgba(91,143,255,0.1); color: var(--blue); border-color: rgba(91,143,255,0.2); }
 
 /* SCREENSHOT GRID */
 .shot-grid {
@@ -1165,10 +1151,6 @@ footer {
   50% { opacity: 1; }
 }
 
-/* ═══ PRICING PANELS (multi-tier tabs) ═══ */
-.pricing-panel { display: none; }
-.pricing-panel.active { display: block; animation: slideUp 0.3s ease both; }
-
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 1024px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); margin: 0 24px 60px; }
@@ -1200,6 +1182,7 @@ footer {
   footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
   .section-intro { padding: 60px 20px 36px; }
   .section-wrap { padding: 0 20px; }
+  .vid-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 }
 @media (max-width: 480px) {
   .stats-strip { grid-template-columns: 1fr; }
@@ -1207,12 +1190,12 @@ footer {
   .stat-block:last-child { border-bottom: none; }
   .floating-cta { bottom: 16px; padding: 8px 12px; }
   .float-btn { padding: 9px 16px; font-size: 0.78rem; }
+  .vid-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- ══════════════ NAV ══════════════ -->
 <nav id="main-nav">
   <div class="nav-logo">
     <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23FFB800'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' font-family='serif' fill='%23000' font-weight='bold'%3ED%3C/text%3E%3C/svg%3E" alt="Digitreams">
@@ -1233,7 +1216,7 @@ footer {
       <a href="https://instagram.com/digitreams" target="_blank" class="nav-social-icon" title="Instagram">⊕</a>
       <a href="https://linkedin.com/company/digitreams" target="_blank" class="nav-social-icon" title="LinkedIn">in</a>
     </div>
-    <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%20found%20your%20portfolio%20and%20I%27m%20interested%20in%20a%20free%20strategy%20call.%20Please%20let%20me%20know%20your%20availability." target="_blank" class="nav-cta">📞 Free Strategy Call</a>
+    <a href="https://wa.me/14063160688?text=Hi Digitreams, I saw your portfolio and want to discuss a potential project for my business." target="_blank" class="nav-cta">📞 Free Strategy Call</a>
   </div>
 
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -1241,14 +1224,13 @@ footer {
   </div>
 </nav>
 
-<!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobile-nav">
   <a href="#services" onclick="closeMenu()">Services</a>
   <a href="#portfolio" onclick="closeMenu()">Portfolio</a>
   <a href="#results" onclick="closeMenu()">Results</a>
   <a href="#pricing" onclick="closeMenu()">Pricing</a>
   <a href="#reviews" onclick="closeMenu()">Reviews</a>
-  <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%20found%20your%20portfolio%20and%20I%27m%20interested%20in%20a%20free%20strategy%20call.%20Please%20let%20me%20know%20your%20availability." target="_blank" style="color:var(--green);">📱 WhatsApp</a>
+  <a href="https://wa.me/14063160688" target="_blank" style="color:var(--green);">📱 WhatsApp</a>
   <a href="mailto:info@digitreams.com" style="color:var(--gold);">✉️ Email</a>
   <div style="display:flex;gap:12px;padding-top:8px;">
     <a href="https://facebook.com" target="_blank" class="nav-social-icon">f</a>
@@ -1257,7 +1239,6 @@ footer {
   </div>
 </div>
 
-<!-- ══════════════ HERO ══════════════ -->
 <section class="hero">
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
@@ -1265,7 +1246,7 @@ footer {
   <div class="hero-content">
     <div class="hero-tag">
       <span class="pulse-dot"></span>
-      Est. 2009 · 15+ Years of Proven Expertise
+      Accepting New Clients — USA Market
     </div>
 
     <h1 class="hero-headline">
@@ -1280,7 +1261,7 @@ footer {
     </p>
 
     <div class="hero-btns">
-      <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%20found%20your%20portfolio%20and%20I%27m%20interested%20in%20a%20free%20strategy%20call.%20Please%20let%20me%20know%20your%20availability." target="_blank" class="btn-gold">📞 Book Free Strategy Call</a>
+      <a href="https://wa.me/14063160688" target="_blank" class="btn-gold">📞 Book Free Strategy Call</a>
       <a href="#portfolio" class="btn-outline">🎬 View Our Work</a>
     </div>
   </div>
@@ -1296,7 +1277,6 @@ footer {
   </div>
 </section>
 
-<!-- ══════════════ STATS ══════════════ -->
 <div class="stats-strip">
   <div class="stat-block">
     <span class="stat-num">50+</span>
@@ -1320,7 +1300,6 @@ footer {
   </div>
 </div>
 
-<!-- ══════════════ SERVICES ══════════════ -->
 <section id="services">
   <div class="section-intro">
     <span class="section-eyebrow">What We Do</span>
@@ -1403,7 +1382,6 @@ footer {
   </div>
 </section>
 
-<!-- ══════════════ PORTFOLIO ══════════════ -->
 <section id="portfolio" class="portfolio-section">
   <div class="section-intro">
     <span class="section-eyebrow">Our Work</span>
@@ -1418,7 +1396,6 @@ footer {
     <button class="main-tab-btn" onclick="switchMain('smm',this)">📱 Social Media</button>
   </div>
 
-  <!-- UGC TAB -->
   <div class="tab-content active" id="tab-ugc">
     <div class="cat-filter" id="ugc-cats">
       <button class="cat-btn active" onclick="filterCat('ugc','all',this)">All Categories</button>
@@ -1438,7 +1415,6 @@ footer {
     <div class="vid-grid" id="ugc-grid"></div>
   </div>
 
-  <!-- FB TAB -->
   <div class="tab-content" id="tab-fb">
     <div class="cat-filter">
       <button class="cat-btn active" onclick="filterCat('fb','all',this)">All Categories</button>
@@ -1454,7 +1430,6 @@ footer {
     <div class="shot-grid" id="fb-grid"></div>
   </div>
 
-  <!-- GOOGLE TAB -->
   <div class="tab-content" id="tab-google">
     <div class="cat-filter">
       <button class="cat-btn active" onclick="filterCat('google','all',this)">All Categories</button>
@@ -1469,7 +1444,6 @@ footer {
     <div class="shot-grid" id="google-grid"></div>
   </div>
 
-  <!-- SMM TAB -->
   <div class="tab-content" id="tab-smm">
     <div class="cat-filter">
       <button class="cat-btn active" onclick="filterCat('smm','all',this)">All Categories</button>
@@ -1483,7 +1457,6 @@ footer {
   </div>
 </section>
 
-<!-- ══════════════ RESULTS ══════════════ -->
 <section id="results" class="results-section">
   <div class="results-header">
     <span class="section-eyebrow">Proven Performance</span>
@@ -1529,222 +1502,74 @@ footer {
   </div>
 </section>
 
-<!-- ══════════════ PRICING ══════════════ -->
 <section id="pricing" class="pricing-section">
   <div class="section-intro">
     <span class="section-eyebrow">Transparent Pricing</span>
     <h2 class="section-title">Choose Your Growth Plan</h2>
-    <p class="section-desc">No hidden fees. No lock-in contracts. Cancel anytime. All plans include onboarding call &amp; weekly reports.</p>
+    <p class="section-desc">No hidden fees. No lock-in contracts. Cancel anytime. All plans include onboarding call & weekly reports.</p>
   </div>
 
-  <!-- PRICING CATEGORY TABS -->
-  <div class="pricing-tabs" style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:36px;padding:0 48px;">
-    <button class="cat-btn active" onclick="switchPricing('ugc-pkg',this)">🎬 AI UGC Packages</button>
-    <button class="cat-btn" onclick="switchPricing('smm-pkg',this)">📱 Social Media Mgmt</button>
-    <button class="cat-btn" onclick="switchPricing('meta-pkg',this)">📘 Meta Ads</button>
-    <button class="cat-btn" onclick="switchPricing('bundle-pkg',this)">🚀 Growth Bundle</button>
-  </div>
-
-  <!-- AI UGC PACKAGES -->
-  <div class="pricing-panel active" id="ugc-pkg">
-    <div class="pricing-grid" style="max-width:1100px;margin:0 auto;padding:0 48px;">
-      <div class="price-card">
-        <div class="price-tier">AI UGC · Starter</div>
-        <div class="price-name">UGC Launch</div>
-        <div class="price-amount"><span>$</span>497</div>
-        <div class="price-per">/ month · 3 video deliverables</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li>3 AI UGC Videos / month</li>
-          <li>1 industry niche</li>
-          <li>Script + voiceover included</li>
-          <li>TikTok / Reels format</li>
-          <li>2 revisions per video</li>
-          <li class="no">A/B variant testing</li>
-          <li class="no">Multi-language versions</li>
-        </ul>
-        <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%27m%20interested%20in%20the%20AI%20UGC%20Starter%20package.%20Can%20we%20discuss%3F" target="_blank" class="price-btn price-btn-outline">Get Started →</a>
-      </div>
-      <div class="price-card featured">
-        <div class="price-badge">Best Value</div>
-        <div class="price-tier">AI UGC · Scale</div>
-        <div class="price-name">UGC Scale</div>
-        <div class="price-amount"><span>$</span>997</div>
-        <div class="price-per">/ month · 10 video deliverables</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li>10 AI UGC Videos / month</li>
-          <li>Up to 3 industry niches</li>
-          <li>Script + voiceover + captions</li>
-          <li>TikTok, Reels &amp; YouTube Shorts</li>
-          <li>Unlimited revisions</li>
-          <li>A/B variant testing</li>
-          <li class="no">Multi-language versions</li>
-        </ul>
-        <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%27m%20interested%20in%20the%20AI%20UGC%20Scale%20package.%20Can%20we%20discuss%3F" target="_blank" class="price-btn price-btn-gold">Book Free Call →</a>
-      </div>
-      <div class="price-card">
-        <div class="price-tier">AI UGC · Pro</div>
-        <div class="price-name">UGC Pro Agency</div>
-        <div class="price-amount"><span>$</span>1,997</div>
-        <div class="price-per">/ month · 25+ deliverables</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li>25+ AI UGC Videos / month</li>
-          <li>All 13 industry niches</li>
-          <li>Full creative team dedicated</li>
-          <li>All formats + aspect ratios</li>
-          <li>Unlimited revisions</li>
-          <li>A/B variant testing</li>
-          <li>Multi-language versions</li>
-        </ul>
-        <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%27m%20interested%20in%20the%20AI%20UGC%20Pro%20package.%20Can%20we%20discuss%3F" target="_blank" class="price-btn price-btn-outline">Contact Us →</a>
-      </div>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-tier">Starter</div>
+      <div class="price-name">Launch Package</div>
+      <div class="price-amount"><span>$</span>997</div>
+      <div class="price-per">/ month · min 2 months</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>1 Ad Platform (Meta or Google)</li>
+        <li>Up to $3K ad spend managed</li>
+        <li>5 AI UGC videos / month</li>
+        <li>Weekly performance report</li>
+        <li>Dedicated account manager</li>
+        <li class="no">Multi-platform campaigns</li>
+        <li class="no">Custom audience research</li>
+        <li class="no">Social media management</li>
+      </ul>
+      <a href="https://wa.me/14063160688" target="_blank" class="price-btn price-btn-outline">Get Started →</a>
     </div>
-  </div>
 
-  <!-- SOCIAL MEDIA MANAGEMENT -->
-  <div class="pricing-panel" id="smm-pkg">
-    <div class="pricing-grid" style="max-width:1100px;margin:0 auto;padding:0 48px;">
-      <div class="price-card">
-        <div class="price-tier">SMM · Essential</div>
-        <div class="price-name">Essential</div>
-        <div class="price-amount"><span>$</span>597</div>
-        <div class="price-per">/ month · 1 platform</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li>1 Platform (IG or FB or TikTok)</li>
-          <li>12 posts / month</li>
-          <li>Basic graphic design</li>
-          <li>Caption copywriting</li>
-          <li>Monthly analytics report</li>
-          <li class="no">Community management</li>
-          <li class="no">Story / Reel content</li>
-        </ul>
-        <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%27m%20interested%20in%20the%20SMM%20Essential%20plan.%20Can%20we%20discuss%3F" target="_blank" class="price-btn price-btn-outline">Get Started →</a>
-      </div>
-      <div class="price-card featured">
-        <div class="price-badge">Most Popular</div>
-        <div class="price-tier">SMM · Business</div>
-        <div class="price-name">Business</div>
-        <div class="price-amount"><span>$</span>1,197</div>
-        <div class="price-per">/ month · 2 platforms</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li>2 Platforms (any combination)</li>
-          <li>20 posts + 10 stories / month</li>
-          <li>Premium design + Reels</li>
-          <li>Caption + hashtag strategy</li>
-          <li>Community management</li>
-          <li>Bi-weekly analytics call</li>
-          <li class="no">Influencer outreach</li>
-        </ul>
-        <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%27m%20interested%20in%20the%20SMM%20Business%20plan.%20Can%20we%20discuss%3F" target="_blank" class="price-btn price-btn-gold">Book Free Call →</a>
-      </div>
-      <div class="price-card">
-        <div class="price-tier">SMM · Dominance</div>
-        <div class="price-name">Dominance</div>
-        <div class="price-amount"><span>$</span>2,197</div>
-        <div class="price-per">/ month · all platforms</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li>All platforms (IG, FB, TikTok, LI)</li>
-          <li>30 posts + daily stories</li>
-          <li>AI UGC Reels included</li>
-          <li>Full community management</li>
-          <li>Influencer outreach</li>
-          <li>Weekly strategy sessions</li>
-          <li>Priority 24h support</li>
-        </ul>
-        <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%27m%20interested%20in%20the%20SMM%20Dominance%20plan.%20Can%20we%20discuss%3F" target="_blank" class="price-btn price-btn-outline">Contact Us →</a>
-      </div>
+    <div class="price-card featured">
+      <div class="price-badge">Most Popular</div>
+      <div class="price-tier">Growth</div>
+      <div class="price-name">Scale Package</div>
+      <div class="price-amount"><span>$</span>1,997</div>
+      <div class="price-per">/ month · min 2 months</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>Meta + Google Ads (both)</li>
+        <li>Up to $10K ad spend managed</li>
+        <li>15 AI UGC videos / month</li>
+        <li>Social Media Management (2 platforms)</li>
+        <li>Custom audience & retargeting</li>
+        <li>A/B creative testing</li>
+        <li>Bi-weekly strategy call</li>
+        <li class="no">Priority 24h support</li>
+      </ul>
+      <a href="https://wa.me/14063160688" target="_blank" class="price-btn price-btn-gold">Book Free Call →</a>
     </div>
-  </div>
 
-  <!-- META ADS STANDALONE -->
-  <div class="pricing-panel" id="meta-pkg">
-    <div class="pricing-grid" style="max-width:900px;margin:0 auto;padding:0 48px;grid-template-columns:repeat(2,1fr);">
-      <div class="price-card">
-        <div class="price-tier">Meta Ads · Core</div>
-        <div class="price-name">Meta Growth</div>
-        <div class="price-amount"><span>$</span>797</div>
-        <div class="price-per">/ month · up to $5K spend</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li>Campaign setup &amp; management</li>
-          <li>Custom &amp; lookalike audiences</li>
-          <li>Up to $5,000 ad spend</li>
-          <li>3 creatives / month</li>
-          <li>Weekly performance report</li>
-          <li>Pixel &amp; conversion tracking</li>
-          <li class="no">Retargeting funnels</li>
-        </ul>
-        <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%27m%20interested%20in%20the%20Meta%20Ads%20Core%20plan.%20Can%20we%20discuss%3F" target="_blank" class="price-btn price-btn-outline">Get Started →</a>
-      </div>
-      <div class="price-card featured">
-        <div class="price-badge">Best ROAS</div>
-        <div class="price-tier">Meta Ads · Scale</div>
-        <div class="price-name">Meta Scale Pro</div>
-        <div class="price-amount"><span>$</span>1,497</div>
-        <div class="price-per">/ month · unlimited spend</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li>Full-funnel campaign architecture</li>
-          <li>Advanced audience segmentation</li>
-          <li>Unlimited ad spend managed</li>
-          <li>10 creatives + AI UGC ads</li>
-          <li>Retargeting &amp; cart recovery</li>
-          <li>A/B creative testing</li>
-          <li>Bi-weekly strategy calls</li>
-        </ul>
-        <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%27m%20interested%20in%20the%20Meta%20Ads%20Scale%20Pro%20plan.%20Can%20we%20discuss%3F" target="_blank" class="price-btn price-btn-gold">Book Free Call →</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- CUSTOM GROWTH BUNDLE -->
-  <div class="pricing-panel" id="bundle-pkg">
-    <div class="pricing-grid" style="max-width:900px;margin:0 auto;padding:0 48px;grid-template-columns:repeat(2,1fr);">
-      <div class="price-card">
-        <div class="price-tier">Bundle · Starter</div>
-        <div class="price-name">Growth Starter Bundle</div>
-        <div class="price-amount"><span>$</span>1,497</div>
-        <div class="price-per">/ month · save 20%</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li>Meta Ads Management</li>
-          <li>5 AI UGC Videos / month</li>
-          <li>Social Media (1 platform)</li>
-          <li>Up to $5K ad spend</li>
-          <li>Weekly performance report</li>
-          <li>Dedicated account manager</li>
-          <li class="no">Google Ads</li>
-        </ul>
-        <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%27m%20interested%20in%20the%20Growth%20Starter%20Bundle.%20Can%20we%20discuss%3F" target="_blank" class="price-btn price-btn-outline">Get Started →</a>
-      </div>
-      <div class="price-card featured">
-        <div class="price-badge">🔥 Maximum ROI</div>
-        <div class="price-tier">Bundle · Elite</div>
-        <div class="price-name">Full Agency Elite</div>
-        <div class="price-amount"><span>$</span>3,997</div>
-        <div class="price-per">/ month · save 35%</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li>Meta + Google + TikTok Ads</li>
-          <li>20+ AI UGC Videos / month</li>
-          <li>Full Social Media (all platforms)</li>
-          <li>Unlimited ad spend</li>
-          <li>Dedicated creative team</li>
-          <li>Weekly strategy sessions</li>
-          <li>Priority 24h support + dashboard</li>
-        </ul>
-        <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%27m%20interested%20in%20the%20Full%20Agency%20Elite%20Bundle.%20Can%20we%20discuss%3F" target="_blank" class="price-btn price-btn-gold">Book Free Call →</a>
-      </div>
+    <div class="price-card">
+      <div class="price-tier">Enterprise</div>
+      <div class="price-name">Full Agency</div>
+      <div class="price-amount"><span>$</span>3,997</div>
+      <div class="price-per">/ month · custom terms</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>All platforms (Meta, Google, TikTok)</li>
+        <li>Unlimited ad spend</li>
+        <li>30+ AI UGC videos / month</li>
+        <li>Full Social Media Management</li>
+        <li>Dedicated creative team</li>
+        <li>Priority 24h support</li>
+        <li>Weekly strategy calls</li>
+        <li>Custom dashboards & reporting</li>
+      </ul>
+      <a href="https://wa.me/14063160688" target="_blank" class="price-btn price-btn-outline">Contact Us →</a>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ REVIEWS ══════════════ -->
 <section id="reviews" class="reviews-section">
   <div class="section-intro">
     <span class="section-eyebrow">Client Testimonials</span>
@@ -1852,23 +1677,21 @@ footer {
   </div>
 </section>
 
-<!-- ══════════════ CTA ══════════════ -->
 <section class="cta-section" id="contact">
   <div class="cta-glow"></div>
   <h2>Ready to <span style="color:var(--gold)">Scale Your Brand?</span></h2>
   <p>Book a free 30-minute strategy call. We'll audit your current marketing and show you exactly where growth is being left on the table.</p>
   <div class="cta-btns">
-    <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%20found%20your%20portfolio%20and%20I%27m%20interested%20in%20a%20free%20strategy%20call.%20Please%20let%20me%20know%20your%20availability." target="_blank" class="btn-gold" style="font-size:1rem;padding:15px 36px;">📞 WhatsApp Now — It's Free</a>
+    <a href="https://wa.me/14063160688" target="_blank" class="btn-gold" style="font-size:1rem;padding:15px 36px;">📞 WhatsApp Now — It's Free</a>
     <a href="mailto:info@digitreams.com" class="btn-outline" style="font-size:1rem;padding:15px 36px;">✉️ Send Email</a>
   </div>
 </section>
 
-<!-- ══════════════ FOOTER ══════════════ -->
 <footer>
   <div class="footer-brand">Digitreams</div>
   <div class="footer-links">
     <a href="mailto:info@digitreams.com">info@digitreams.com</a>
-    <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%20found%20your%20portfolio%20and%20I%27m%20interested%20in%20a%20free%20strategy%20call.%20Please%20let%20me%20know%20your%20availability." target="_blank">+1 (406) 316-0688</a>
+    <a href="https://wa.me/14063160688" target="_blank">+1 (406) 316-0688</a>
     <a href="#services">Services</a>
     <a href="#pricing">Pricing</a>
     <a href="#reviews">Reviews</a>
@@ -1883,9 +1706,8 @@ footer {
   </div>
 </footer>
 
-<!-- ══════════════ FLOATING CTA ══════════════ -->
 <div class="floating-cta">
-  <a href="https://wa.me/14063160688?text=Hi%20Digitreams!%20I%20found%20your%20portfolio%20and%20I%27m%20interested%20in%20a%20free%20strategy%20call.%20Please%20let%20me%20know%20your%20availability." target="_blank" class="float-btn float-wa">
+  <a href="https://wa.me/14063160688" target="_blank" class="float-btn float-wa">
     💬 WhatsApp
   </a>
   <a href="mailto:info@digitreams.com" class="float-btn float-em">
@@ -1893,48 +1715,40 @@ footer {
   </a>
 </div>
 
-<!-- ══════════════ JS ══════════════ -->
 <script>
 // ═══════════════════════════════════════════════
-// PORTFOLIO DATA — 28 AI UGC VIDEOS
+// PORTFOLIO DATA (UPDATED WITH 28 VIDEOS)
 // ═══════════════════════════════════════════════
-const CAT_LABELS = {
-  digital:'Digital Marketing', beauty:'Beauty Salon', dental:'Dental',
-  ecommerce:'E-Commerce', gym:'Gym / Fitness', homeimprove:'Home Improvement',
-  hvac:'HVAC', pet:'Pet Clinic', plumber:'Plumber', roofing:'Roofing',
-  restaurant:'Restaurant', realestate:'Real Estate'
-};
-
 const DATA = {
   ugc: [
-    { id:'8Txro6p0dwo', cat:'digital',     title:'Digitreams Agency Overview',      badge:'AI UGC', result:'Official Service' },
-    { id:'EKBNu53h1mY', cat:'digital',     title:'Professional Marketing Intro',    badge:'AI UGC', result:'Strategy First' },
-    { id:'qNESLzn6KXQ', cat:'digital',     title:'AI Powered Ad Strategy',          badge:'AI UGC', result:'15+ Yrs Exp' },
-    { id:'DCt2ZQOhraY', cat:'digital',     title:'Digital Growth Solutions',        badge:'AI UGC', result:'Scale Fast' },
-    { id:'M3iiQQrePGY', cat:'digital',     title:'Agency Process & ROI',            badge:'AI UGC', result:'Proven Results' },
-    { id:'mVy1TKNeqLg', cat:'digital',     title:'Digitreams Service Showcase',     badge:'AI UGC', result:'Client Growth' },
-    { id:'nLNnyD99zV0', cat:'beauty',      title:'Beauty Salon Experience',         badge:'AI UGC', result:'-40% CPA' },
-    { id:'LKD-oWE_nfs', cat:'beauty',      title:'Premium Salon UGC Ad',            badge:'AI UGC', result:'High Engagement' },
-    { id:'8mWhPXaCjg0', cat:'beauty',      title:'Skincare & Beauty Hook',          badge:'AI UGC', result:'Conversion Focus' },
-    { id:'hLbLnSWp9sw', cat:'beauty',      title:'Salon Transformation Video',      badge:'AI UGC', result:'Meta Ads Ready' },
-    { id:'lR5N7SEBKsA', cat:'dental',      title:'Dental Clinic Patient Story',     badge:'AI UGC', result:'148 Leads' },
-    { id:'2G41X6qL-X0', cat:'dental',      title:'Professional Dental Care Ad',     badge:'AI UGC', result:'Trust Driven' },
-    { id:'2EmMELeJxCs', cat:'dental',      title:'Smile Restoration UGC',           badge:'AI UGC', result:'+4.5x ROAS' },
-    { id:'MFMn8J6DXoM', cat:'ecommerce',   title:'Premium Beauty Serum Ad',         badge:'AI UGC', result:'6.1x ROAS' },
-    { id:'SAsS9kaa0Bs', cat:'gym',         title:'Fitness & Gym Motivation',        badge:'AI UGC', result:'Lead Gen Ready' },
-    { id:'54dRXXWMpmU', cat:'gym',         title:'Gym Membership UGC',              badge:'AI UGC', result:'High CTR' },
-    { id:'dRWDp-n2gj4', cat:'gym',         title:'Workout Results Showcase',        badge:'AI UGC', result:'ROI Focused' },
-    { id:'ExUw_0zR1jE', cat:'homeimprove', title:'Home Improvement Service',        badge:'AI UGC', result:'Trust Built' },
-    { id:'B4ww4w7q66U', cat:'hvac',        title:'HVAC Maintenance Promo',          badge:'AI UGC', result:'Local Lead Gen' },
-    { id:'V6mApYCAfNo', cat:'pet',         title:'Pet Clinic Care Story',           badge:'AI UGC', result:'High Retention' },
-    { id:'RsgfbPZHZWE', cat:'pet',         title:'Veterinary Service UGC',          badge:'AI UGC', result:'Caring & Trust' },
-    { id:'6KXJRqwoPBg', cat:'pet',         title:'Pet Wellness Campaign',           badge:'AI UGC', result:'TikTok Viral' },
-    { id:'7xQaKjaqWpQ', cat:'plumber',     title:'Emergency Plumbing Ad',           badge:'AI UGC', result:'Local Reach' },
-    { id:'Ju0UejbhSvk', cat:'plumber',     title:'Professional Plumbing Care',      badge:'AI UGC', result:'High Conversion' },
-    { id:'TVJdL_yelE0', cat:'roofing',     title:'Roofing Solutions UGC',           badge:'AI UGC', result:'USA Market' },
-    { id:'kw2VSnus9r4', cat:'restaurant',  title:'Restaurant Experience Ad',        badge:'AI UGC', result:'2.1M Reach' },
-    { id:'s95pkfhW2WE', cat:'restaurant',  title:'Foodie Recommendation UGC',       badge:'AI UGC', result:'Booked Out' },
-    { id:'t2PmGfLd_Vw', cat:'restaurant',  title:'Culinary Excellence Promo',       badge:'AI UGC', result:'Instagram Ready' },
+    { id:'8Txro6p0dwo', cat:'digital', title:'Digitreams Agency Overview', badge:'AI UGC', result:'Official Service' },
+    { id:'EKBNu53h1mY', cat:'digital', title:'Professional Marketing Intro', badge:'AI UGC', result:'Strategy First' },
+    { id:'qNESLzn6KXQ', cat:'digital', title:'AI Powered Ad Strategy', badge:'AI UGC', result:'15+ Yrs Exp' },
+    { id:'DCt2ZQOhraY', cat:'digital', title:'Digital Growth Solutions', badge:'AI UGC', result:'Scale Fast' },
+    { id:'M3iiQQrePGY', cat:'digital', title:'Agency Process & ROI', badge:'AI UGC', result:'Proven Results' },
+    { id:'mVy1TKNeqLg', cat:'digital', title:'Digitreams Service Showcase', badge:'AI UGC', result:'Client Growth' },
+    { id:'nLNnyD99zV0', cat:'beauty', title:'Beauty Salon Experience', badge:'AI UGC', result:'-40% CPA' },
+    { id:'LKD-oWE_nfs', cat:'beauty', title:'Premium Salon UGC Ad', badge:'AI UGC', result:'High Engagement' },
+    { id:'8mWhPXaCjg0', cat:'beauty', title:'Skincare & Beauty Hook', badge:'AI UGC', result:'Conversion Focus' },
+    { id:'hLbLnSWp9sw', cat:'beauty', title:'Salon Transformation Video', badge:'AI UGC', result:'Meta Ads Ready' },
+    { id:'lR5N7SEBKsA', cat:'dental', title:'Dental Clinic Patient Story', badge:'AI UGC', result:'148 Leads' },
+    { id:'2G41X6qL-X0', cat:'dental', title:'Professional Dental Care Ad', badge:'AI UGC', result:'Trust Driven' },
+    { id:'2EmMELeJxCs', cat:'dental', title:'Smile Restoration UGC', badge:'AI UGC', result:'+4.5x ROAS' },
+    { id:'MFMn8J6DXoM', cat:'ecommerce', title:'Premium Beauty Serum Ad', badge:'AI UGC', result:'6.1x ROAS' },
+    { id:'SAsS9kaa0Bs', cat:'gym', title:'Fitness & Gym Motivation', badge:'AI UGC', result:'Lead Gen Ready' },
+    { id:'54dRXXWMpmU', cat:'gym', title:'Gym Membership UGC', badge:'AI UGC', result:'High CTR' },
+    { id:'dRWDp-n2gj4', cat:'gym', title:'Workout Results Showcase', badge:'AI UGC', result:'ROI Focused' },
+    { id:'ExUw_0zR1jE', cat:'homeimprove', title:'Home Improvement Service', badge:'AI UGC', result:'Trust Built' },
+    { id:'B4ww4w7q66U', cat:'hvac', title:'HVAC Maintenance Promo', badge:'AI UGC', result:'Local Lead Gen' },
+    { id:'V6mApYCAfNo', cat:'pet', title:'Pet Clinic Care Story', badge:'AI UGC', result:'High Retention' },
+    { id:'RsgfbPZHZWE', cat:'pet', title:'Veterinary Service UGC', badge:'AI UGC', result:'Caring & Trust' },
+    { id:'6KXJRqwoPBg', cat:'pet', title:'Pet Wellness Campaign', badge:'AI UGC', result:'TikTok Viral' },
+    { id:'7xQaKjaqWpQ', cat:'plumber', title:'Emergency Plumbing Ad', badge:'AI UGC', result:'Local Reach' },
+    { id:'Ju0UejbhSvk', cat:'plumber', title:'Professional Plumbing Care', badge:'AI UGC', result:'High Conversion' },
+    { id:'TVJdL_yelE0', cat:'roofing', title:'Roofing Solutions UGC', badge:'AI UGC', result:'USA Market' },
+    { id:'kw2VSnus9r4', cat:'restaurant', title:'Restaurant Experience Ad', badge:'AI UGC', result:'2.1M Reach' },
+    { id:'s95pkfhW2WE', cat:'restaurant', title:'Foodie Recommendation UGC', badge:'AI UGC', result:'Booked Out' },
+    { id:'t2PmGfLd_Vw', cat:'restaurant', title:'Culinary Excellence Promo', badge:'AI UGC', result:'Instagram Ready' }
   ],
   fb: [],
   google: [],
@@ -1942,17 +1756,7 @@ const DATA = {
 };
 
 // ═══════════════════════════════════════════════
-// PRICING PANEL SWITCHER
-// ═══════════════════════════════════════════════
-function switchPricing(panelId, btn) {
-  document.querySelectorAll('.pricing-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.pricing-tabs .cat-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById(panelId).classList.add('active');
-  btn.classList.add('active');
-}
-
-// ═══════════════════════════════════════════════
-// MAIN TAB SWITCHING
+// TAB SWITCHING
 // ═══════════════════════════════════════════════
 function switchMain(tab, btn) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -1972,10 +1776,11 @@ function filterCat(tab, cat, btn) {
 }
 
 // ═══════════════════════════════════════════════
-// RENDER GRIDS
+// RENDER
 // ═══════════════════════════════════════════════
 function renderGrid(tab, cat) {
-  const grid = document.getElementById(tab + '-grid');
+  const gridId = tab + '-grid';
+  const grid = document.getElementById(gridId);
   if (!grid) return;
 
   const items = (DATA[tab] || []).filter(i => cat === 'all' || i.cat === cat);
@@ -1986,31 +1791,25 @@ function renderGrid(tab, cat) {
       <div class="empty-state">
         <div class="empty-icon">${icons[tab]}</div>
         <div class="empty-title">Content Coming Soon</div>
-        <div class="empty-desc">Screenshots and results will be added here soon.</div>
-        <span class="empty-label">+ Coming Soon</span>
+        <div class="empty-desc">Portfolio updates are in progress. Stay tuned for our latest results!</div>
       </div>`;
     return;
   }
 
   if (tab === 'ugc') {
-    grid.innerHTML = items.map(v => {
-      const catLabel = CAT_LABELS[v.cat] || v.cat;
-      return `
+    grid.innerHTML = items.map(v => `
       <div class="vid-card">
         <div class="vid-frame">
-          <iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen loading="lazy"></iframe>
+          <iframe src="https://www.youtube.com/embed/${v.id}?rel=0" allowfullscreen loading="lazy"></iframe>
           ${v.badge ? `<div class="vid-badge">${v.badge}</div>` : ''}
           ${v.result ? `<div class="vid-result">${v.result}</div>` : ''}
         </div>
         <div class="vid-body">
           <div class="vid-title">${v.title}</div>
-          <div class="vid-tags">
-            <span class="vtag">${catLabel}</span>
-            <span class="vtag g">AI UGC</span>
-          </div>
+          <div class="vid-desc">${v.desc||''}</div>
+          ${v.tags ? `<div class="vid-tags">${v.tags.map((t,i) => `<span class="vtag ${i===v.tags.length-1?'g':''}">${t}</span>`).join('')}</div>` : ''}
         </div>
-      </div>`;
-    }).join('');
+      </div>`).join('');
   } else {
     grid.innerHTML = items.map(s => `
       <div class="shot-card">
