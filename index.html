@@ -87,19 +87,18 @@ nav {
   gap: 12px;
 }
 .nav-logo img {
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
-  object-fit: contain; /* Ensures logo is not cut off */
-  background: transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid var(--border2);
 }
 .nav-brand {
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 4vw, 1.6rem); /* Responsive size to prevent overflow */
-  font-weight: 800; /* Bold weight to match typical agency logos */
-  color: var(--gold); /* Matched to theme */
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold);
   letter-spacing: -0.5px;
-  text-transform: uppercase;
 }
 
 .nav-links {
@@ -117,6 +116,12 @@ nav {
   transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--gold); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
 .nav-socials {
   display: flex;
@@ -182,7 +187,7 @@ nav {
 .mobile-nav {
   display: none;
   position: fixed;
-  top: 65px; left: 0; right: 0;
+  top: 72px; left: 0; right: 0;
   background: rgba(5,5,8,0.97);
   backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border);
@@ -1168,12 +1173,9 @@ footer {
 }
 
 @media (max-width: 768px) {
-  nav { padding: 12px 16px; }
-  .nav-logo { gap: 8px; }
-  .nav-logo img { width: 36px; height: 36px; }
-  .nav-brand { font-size: 1.15rem; }
+  nav { padding: 14px 20px; }
   .nav-links { display: none; }
-  .nav-socials { display: none; }
+  .nav-right { display: none !important; } /* Hides the big desktop CTA and socials on mobile to prevent squishing */
   .hamburger { display: flex; }
   .hero { padding: 100px 20px 60px; }
   .hero-years { display: none; }
@@ -1209,19 +1211,19 @@ footer {
 
 <nav id="main-nav">
   <div class="nav-logo">
-    <img src="logo.jpg" alt="Digitreams Logo">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23FFB800'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' font-family='serif' fill='%23000' font-weight='bold'%3ED%3C/text%3E%3C/svg%3E" alt="Digitreams">
     <span class="nav-brand">Digitreams</span>
   </div>
 
   <div class="nav-links">
-    <a href="#services">Services</a>
     <a href="#portfolio">Portfolio</a>
+    <a href="#services">Services</a>
     <a href="#results">Results</a>
     <a href="#pricing">Pricing</a>
     <a href="#reviews">Reviews</a>
   </div>
 
-  <div style="display:flex;align-items:center;gap:12px;">
+  <div class="nav-right">
     <div class="nav-socials">
       <a href="https://facebook.com/digitreams" target="_blank" class="nav-social-icon" title="Facebook">f</a>
       <a href="https://instagram.com/digitreams" target="_blank" class="nav-social-icon" title="Instagram">⊕</a>
@@ -1236,8 +1238,8 @@ footer {
 </nav>
 
 <div class="mobile-nav" id="mobile-nav">
-  <a href="#services" onclick="closeMenu()">Services</a>
   <a href="#portfolio" onclick="closeMenu()">Portfolio</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
   <a href="#results" onclick="closeMenu()">Results</a>
   <a href="#pricing" onclick="closeMenu()">Pricing</a>
   <a href="#reviews" onclick="closeMenu()">Reviews</a>
@@ -1285,6 +1287,81 @@ footer {
   <div class="hero-scroll">
     <div class="scroll-line"></div>
     <span>Scroll</span>
+  </div>
+</section>
+
+<section id="portfolio" class="portfolio-section">
+  <div class="section-intro">
+    <span class="section-eyebrow">Our Work</span>
+    <h2 class="section-title">Portfolio & Case Studies</h2>
+    <p class="section-desc">Browse AI UGC videos, Facebook Ad results, Google Ads data & Social Media work across 13 industries.</p>
+  </div>
+
+  <div class="main-tab-bar">
+    <button class="main-tab-btn active" onclick="switchMain('ugc',this)">🎬 AI UGC Videos</button>
+    <button class="main-tab-btn" onclick="switchMain('fb',this)">📘 Facebook Ads</button>
+    <button class="main-tab-btn" onclick="switchMain('google',this)">🔍 Google Ads</button>
+    <button class="main-tab-btn" onclick="switchMain('smm',this)">📱 Social Media</button>
+  </div>
+
+  <div class="tab-content active" id="tab-ugc">
+    <div class="cat-filter" id="ugc-cats">
+      <button class="cat-btn active" onclick="filterCat('ugc','all',this)">All Categories</button>
+      <button class="cat-btn" onclick="filterCat('ugc','realestate',this)">🏠 Real Estate</button>
+      <button class="cat-btn" onclick="filterCat('ugc','beauty',this)">💄 Beauty Salon</button>
+      <button class="cat-btn" onclick="filterCat('ugc','pet',this)">🐾 Pet Clinic</button>
+      <button class="cat-btn" onclick="filterCat('ugc','dental',this)">🦷 Dental</button>
+      <button class="cat-btn" onclick="filterCat('ugc','gym',this)">💪 Gym</button>
+      <button class="cat-btn" onclick="filterCat('ugc','restaurant',this)">🍕 Restaurant</button>
+      <button class="cat-btn" onclick="filterCat('ugc','roofing',this)">🏗️ Roofing</button>
+      <button class="cat-btn" onclick="filterCat('ugc','hvac',this)">❄️ HVAC</button>
+      <button class="cat-btn" onclick="filterCat('ugc','plumber',this)">🔧 Plumber</button>
+      <button class="cat-btn" onclick="filterCat('ugc','ecommerce',this)">🛍️ E-Commerce</button>
+      <button class="cat-btn" onclick="filterCat('ugc','homeimprove',this)">🏡 Home Improvement</button>
+      <button class="cat-btn" onclick="filterCat('ugc','digital',this)">💼 Digital Marketing</button>
+    </div>
+    <div class="vid-grid" id="ugc-grid"></div>
+  </div>
+
+  <div class="tab-content" id="tab-fb">
+    <div class="cat-filter">
+      <button class="cat-btn active" onclick="filterCat('fb','all',this)">All Categories</button>
+      <button class="cat-btn" onclick="filterCat('fb','realestate',this)">🏠 Real Estate</button>
+      <button class="cat-btn" onclick="filterCat('fb','beauty',this)">💄 Beauty Salon</button>
+      <button class="cat-btn" onclick="filterCat('fb','pet',this)">🐾 Pet Clinic</button>
+      <button class="cat-btn" onclick="filterCat('fb','dental',this)">🦷 Dental</button>
+      <button class="cat-btn" onclick="filterCat('fb','gym',this)">💪 Gym</button>
+      <button class="cat-btn" onclick="filterCat('fb','restaurant',this)">🍕 Restaurant</button>
+      <button class="cat-btn" onclick="filterCat('fb','ecommerce',this)">🛍️ E-Commerce</button>
+      <button class="cat-btn" onclick="filterCat('fb','digital',this)">💼 Digital</button>
+    </div>
+    <div class="shot-grid" id="fb-grid"></div>
+  </div>
+
+  <div class="tab-content" id="tab-google">
+    <div class="cat-filter">
+      <button class="cat-btn active" onclick="filterCat('google','all',this)">All Categories</button>
+      <button class="cat-btn" onclick="filterCat('google','realestate',this)">🏠 Real Estate</button>
+      <button class="cat-btn" onclick="filterCat('google','beauty',this)">💄 Beauty Salon</button>
+      <button class="cat-btn" onclick="filterCat('google','dental',this)">🦷 Dental</button>
+      <button class="cat-btn" onclick="filterCat('google','gym',this)">💪 Gym</button>
+      <button class="cat-btn" onclick="filterCat('google','hvac',this)">❄️ HVAC</button>
+      <button class="cat-btn" onclick="filterCat('google','plumber',this)">🔧 Plumber</button>
+      <button class="cat-btn" onclick="filterCat('google','digital',this)">💼 Digital</button>
+    </div>
+    <div class="shot-grid" id="google-grid"></div>
+  </div>
+
+  <div class="tab-content" id="tab-smm">
+    <div class="cat-filter">
+      <button class="cat-btn active" onclick="filterCat('smm','all',this)">All Categories</button>
+      <button class="cat-btn" onclick="filterCat('smm','realestate',this)">🏠 Real Estate</button>
+      <button class="cat-btn" onclick="filterCat('smm','beauty',this)">💄 Beauty Salon</button>
+      <button class="cat-btn" onclick="filterCat('smm','restaurant',this)">🍕 Restaurant</button>
+      <button class="cat-btn" onclick="filterCat('smm','gym',this)">💪 Gym</button>
+      <button class="cat-btn" onclick="filterCat('smm','ecommerce',this)">🛍️ E-Commerce</button>
+    </div>
+    <div class="shot-grid" id="smm-grid"></div>
   </div>
 </section>
 
@@ -1390,81 +1467,6 @@ footer {
         <span class="sftag">Forecasting</span>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="portfolio" class="portfolio-section">
-  <div class="section-intro">
-    <span class="section-eyebrow">Our Work</span>
-    <h2 class="section-title">Portfolio & Case Studies</h2>
-    <p class="section-desc">Browse AI UGC videos, Facebook Ad results, Google Ads data & Social Media work across 13 industries.</p>
-  </div>
-
-  <div class="main-tab-bar">
-    <button class="main-tab-btn active" onclick="switchMain('ugc',this)">🎬 AI UGC Videos</button>
-    <button class="main-tab-btn" onclick="switchMain('fb',this)">📘 Facebook Ads</button>
-    <button class="main-tab-btn" onclick="switchMain('google',this)">🔍 Google Ads</button>
-    <button class="main-tab-btn" onclick="switchMain('smm',this)">📱 Social Media</button>
-  </div>
-
-  <div class="tab-content active" id="tab-ugc">
-    <div class="cat-filter" id="ugc-cats">
-      <button class="cat-btn active" onclick="filterCat('ugc','all',this)">All Categories</button>
-      <button class="cat-btn" onclick="filterCat('ugc','realestate',this)">🏠 Real Estate</button>
-      <button class="cat-btn" onclick="filterCat('ugc','beauty',this)">💄 Beauty Salon</button>
-      <button class="cat-btn" onclick="filterCat('ugc','pet',this)">🐾 Pet Clinic</button>
-      <button class="cat-btn" onclick="filterCat('ugc','dental',this)">🦷 Dental</button>
-      <button class="cat-btn" onclick="filterCat('ugc','gym',this)">💪 Gym</button>
-      <button class="cat-btn" onclick="filterCat('ugc','restaurant',this)">🍕 Restaurant</button>
-      <button class="cat-btn" onclick="filterCat('ugc','roofing',this)">🏗️ Roofing</button>
-      <button class="cat-btn" onclick="filterCat('ugc','hvac',this)">❄️ HVAC</button>
-      <button class="cat-btn" onclick="filterCat('ugc','plumber',this)">🔧 Plumber</button>
-      <button class="cat-btn" onclick="filterCat('ugc','ecommerce',this)">🛍️ E-Commerce</button>
-      <button class="cat-btn" onclick="filterCat('ugc','homeimprove',this)">🏡 Home Improvement</button>
-      <button class="cat-btn" onclick="filterCat('ugc','digital',this)">💼 Digital Marketing</button>
-    </div>
-    <div class="vid-grid" id="ugc-grid"></div>
-  </div>
-
-  <div class="tab-content" id="tab-fb">
-    <div class="cat-filter">
-      <button class="cat-btn active" onclick="filterCat('fb','all',this)">All Categories</button>
-      <button class="cat-btn" onclick="filterCat('fb','realestate',this)">🏠 Real Estate</button>
-      <button class="cat-btn" onclick="filterCat('fb','beauty',this)">💄 Beauty Salon</button>
-      <button class="cat-btn" onclick="filterCat('fb','pet',this)">🐾 Pet Clinic</button>
-      <button class="cat-btn" onclick="filterCat('fb','dental',this)">🦷 Dental</button>
-      <button class="cat-btn" onclick="filterCat('fb','gym',this)">💪 Gym</button>
-      <button class="cat-btn" onclick="filterCat('fb','restaurant',this)">🍕 Restaurant</button>
-      <button class="cat-btn" onclick="filterCat('fb','ecommerce',this)">🛍️ E-Commerce</button>
-      <button class="cat-btn" onclick="filterCat('fb','digital',this)">💼 Digital</button>
-    </div>
-    <div class="shot-grid" id="fb-grid"></div>
-  </div>
-
-  <div class="tab-content" id="tab-google">
-    <div class="cat-filter">
-      <button class="cat-btn active" onclick="filterCat('google','all',this)">All Categories</button>
-      <button class="cat-btn" onclick="filterCat('google','realestate',this)">🏠 Real Estate</button>
-      <button class="cat-btn" onclick="filterCat('google','beauty',this)">💄 Beauty Salon</button>
-      <button class="cat-btn" onclick="filterCat('google','dental',this)">🦷 Dental</button>
-      <button class="cat-btn" onclick="filterCat('google','gym',this)">💪 Gym</button>
-      <button class="cat-btn" onclick="filterCat('google','hvac',this)">❄️ HVAC</button>
-      <button class="cat-btn" onclick="filterCat('google','plumber',this)">🔧 Plumber</button>
-      <button class="cat-btn" onclick="filterCat('google','digital',this)">💼 Digital</button>
-    </div>
-    <div class="shot-grid" id="google-grid"></div>
-  </div>
-
-  <div class="tab-content" id="tab-smm">
-    <div class="cat-filter">
-      <button class="cat-btn active" onclick="filterCat('smm','all',this)">All Categories</button>
-      <button class="cat-btn" onclick="filterCat('smm','realestate',this)">🏠 Real Estate</button>
-      <button class="cat-btn" onclick="filterCat('smm','beauty',this)">💄 Beauty Salon</button>
-      <button class="cat-btn" onclick="filterCat('smm','restaurant',this)">🍕 Restaurant</button>
-      <button class="cat-btn" onclick="filterCat('smm','gym',this)">💪 Gym</button>
-      <button class="cat-btn" onclick="filterCat('smm','ecommerce',this)">🛍️ E-Commerce</button>
-    </div>
-    <div class="shot-grid" id="smm-grid"></div>
   </div>
 </section>
 
@@ -1700,7 +1702,7 @@ footer {
 
 <footer>
   <div class="footer-brand">
-    <img src="logo.jpg" alt="Digitreams Logo">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23FFB800'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' font-family='serif' fill='%23000' font-weight='bold'%3ED%3C/text%3E%3C/svg%3E" alt="Digitreams">
     Digitreams
   </div>
   <div class="footer-links">
