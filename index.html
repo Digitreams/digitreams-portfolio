@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,11 +87,19 @@ nav {
   gap: 12px;
 }
 .nav-logo img {
-  width: auto;
-  height: 40px; /* Adjust height as needed, width adjusts automatically */
-  object-fit: contain;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid var(--border2);
 }
-
+.nav-brand {
+  font-family: var(--font-ui);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: -0.5px;
+}
 
 .nav-links {
   display: flex;
@@ -109,12 +116,6 @@ nav {
   transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--gold); }
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
 
 .nav-socials {
   display: flex;
@@ -349,12 +350,11 @@ nav {
   font-weight: 600;
 }
 
-/* FIXED SCROLL INDICATOR */
 .hero-scroll {
   position: absolute;
   bottom: 32px;
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Adjust exact center */
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -364,236 +364,12 @@ nav {
   letter-spacing: 2px;
   text-transform: uppercase;
   z-index: 2;
-  width: auto; /* Ensures it doesn't take full width and mess up positioning */
 }
 .scroll-line {
   width: 1px;
   height: 48px;
   background: linear-gradient(to bottom, var(--gold), transparent);
   animation: scrollPulse 2s ease-in-out infinite;
-}
-
-/* ═══ PORTFOLIO (MOVED UP) ═══ */
-.portfolio-section {
-  padding: 0 0 80px;
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.main-tab-bar {
-  display: flex;
-  border-bottom: 1px solid var(--border);
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 0 48px;
-  scrollbar-width: none;
-}
-.main-tab-bar::-webkit-scrollbar { display: none; }
-
-.main-tab-btn {
-  padding: 18px 24px;
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  color: var(--muted);
-  cursor: pointer;
-  font-family: var(--font-body);
-  font-size: 0.88rem;
-  font-weight: 600;
-  white-space: nowrap;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  margin-bottom: -1px;
-}
-.main-tab-btn:hover { color: var(--text); }
-.main-tab-btn.active {
-  color: var(--gold);
-  border-bottom-color: var(--gold);
-}
-
-.tab-content { display: none; padding: 40px 48px 0; }
-.tab-content.active { display: block; }
-
-/* CATEGORY FILTER */
-.cat-filter {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-}
-.cat-btn {
-  padding: 7px 16px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--muted2);
-  font-size: 0.8rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-family: var(--font-body);
-  white-space: nowrap;
-}
-.cat-btn:hover { border-color: var(--border2); color: var(--text); }
-.cat-btn.active {
-  background: var(--gold-dim);
-  border-color: var(--gold);
-  color: var(--gold);
-  font-weight: 600;
-}
-
-/* ═════════════════════════════ */
-/* VIDEO GRID  */
-/* ═════════════════════════════ */
-.vid-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
-}
-
-.vid-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  transition: all 0.3s;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-.vid-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,184,0,0.2);
-  border-color: rgba(255,184,0,0.3);
-}
-
-.vid-frame {
-  position: relative;
-  padding-top: 177.77%; 
-  background: #000;
-  border-bottom: 1px solid var(--border);
-}
-.vid-frame iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  border: none;
-}
-.vid-badge {
-  position: absolute;
-  top: 10px; left: 10px;
-  background: rgba(5,5,8,0.9);
-  border: 1px solid var(--border2);
-  padding: 3px 9px;
-  border-radius: 5px;
-  font-size: 0.68rem;
-  color: var(--gold);
-  font-weight: 700;
-}
-.vid-result {
-  position: absolute;
-  top: 10px; right: 10px;
-  background: rgba(0,40,20,0.9);
-  border: 1px solid rgba(0,229,160,0.3);
-  padding: 3px 9px;
-  border-radius: 5px;
-  font-size: 0.68rem;
-  color: var(--green);
-  font-weight: 700;
-}
-
-.vid-body { padding: 18px; flex-grow: 1; }
-.vid-title {
-  font-family: var(--font-ui);
-  font-size: 0.98rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-  line-height: 1.3;
-}
-.vid-desc { font-size: 0.8rem; color: var(--muted2); line-height: 1.5; margin-bottom: 12px; }
-.vid-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.vtag {
-  font-size: 0.68rem;
-  padding: 3px 8px;
-  border-radius: 5px;
-  background: var(--gold-dim);
-  color: var(--gold);
-  border: 1px solid var(--border2);
-}
-.vtag.g { background: rgba(0,229,160,0.08); color: var(--green); border-color: rgba(0,229,160,0.2); }
-
-/* SCREENSHOT GRID */
-.shot-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-}
-.shot-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  transition: all 0.3s;
-}
-.shot-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(255,184,0,0.3);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
-}
-.shot-media {
-  position: relative;
-  height: 220px;
-  background: var(--surface);
-  overflow: hidden;
-}
-.shot-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
-.shot-card:hover .shot-media img { transform: scale(1.05); }
-.shot-ph {
-  width: 100%; height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: linear-gradient(135deg, #0f0f1a, #1a1200);
-}
-.shot-ph-icon { font-size: 2.8rem; opacity: 0.3; }
-.shot-ph-text {
-  font-size: 0.75rem;
-  color: var(--muted);
-  border: 1px dashed var(--border2);
-  padding: 5px 12px;
-  border-radius: 5px;
-}
-.shot-body { padding: 18px; }
-.shot-title { font-family: var(--font-ui); font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
-.shot-desc { font-size: 0.8rem; color: var(--muted2); line-height: 1.5; margin-bottom: 12px; }
-
-/* EMPTY */
-.empty-state {
-  grid-column: 1/-1;
-  text-align: center;
-  padding: 80px 20px;
-  background: var(--card);
-  border: 2px dashed var(--border2);
-  border-radius: 16px;
-}
-.empty-icon { font-size: 3.5rem; margin-bottom: 16px; opacity: 0.3; }
-.empty-title { font-family: var(--font-ui); font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
-.empty-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.6; }
-.empty-label {
-  display: inline-block;
-  margin-top: 16px;
-  background: var(--gold-dim);
-  border: 1px solid var(--border2);
-  color: var(--gold);
-  font-size: 0.72rem;
-  padding: 5px 14px;
-  border-radius: 6px;
-  font-weight: 600;
 }
 
 /* ═══ STATS ═══ */
@@ -755,6 +531,230 @@ section { position: relative; z-index: 1; }
   font-weight: 600;
 }
 
+/* ═══ PORTFOLIO ═══ */
+.portfolio-section {
+  padding: 0 0 80px;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.main-tab-bar {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 48px;
+  scrollbar-width: none;
+}
+.main-tab-bar::-webkit-scrollbar { display: none; }
+
+.main-tab-btn {
+  padding: 18px 24px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: -1px;
+}
+.main-tab-btn:hover { color: var(--text); }
+.main-tab-btn.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+.tab-content { display: none; padding: 40px 48px 0; }
+.tab-content.active { display: block; }
+
+/* CATEGORY FILTER */
+.cat-filter {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.cat-btn {
+  padding: 7px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted2);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+  white-space: nowrap;
+}
+.cat-btn:hover { border-color: var(--border2); color: var(--text); }
+.cat-btn.active {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* ═════════════════════════════ */
+/* VIDEO GRID (UPDATED 9:16 CSS) */
+/* ═════════════════════════════ */
+.vid-grid {
+  display: grid;
+  /* Changed min-width from 310px to 260px for better vertical card spacing */
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.vid-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.3s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.vid-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,184,0,0.2);
+  border-color: rgba(255,184,0,0.3);
+}
+
+.vid-frame {
+  position: relative;
+  /* 9:16 Vertical Ratio Formula: (16/9)*100 = 177.77% */
+  padding-top: 177.77%; 
+  background: #000;
+  border-bottom: 1px solid var(--border);
+}
+.vid-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+.vid-badge {
+  position: absolute;
+  top: 10px; left: 10px;
+  background: rgba(5,5,8,0.9);
+  border: 1px solid var(--border2);
+  padding: 3px 9px;
+  border-radius: 5px;
+  font-size: 0.68rem;
+  color: var(--gold);
+  font-weight: 700;
+}
+.vid-result {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: rgba(0,40,20,0.9);
+  border: 1px solid rgba(0,229,160,0.3);
+  padding: 3px 9px;
+  border-radius: 5px;
+  font-size: 0.68rem;
+  color: var(--green);
+  font-weight: 700;
+}
+
+.vid-body { padding: 18px; flex-grow: 1; }
+.vid-title {
+  font-family: var(--font-ui);
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.vid-desc { font-size: 0.8rem; color: var(--muted2); line-height: 1.5; margin-bottom: 12px; }
+.vid-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.vtag {
+  font-size: 0.68rem;
+  padding: 3px 8px;
+  border-radius: 5px;
+  background: var(--gold-dim);
+  color: var(--gold);
+  border: 1px solid var(--border2);
+}
+.vtag.g { background: rgba(0,229,160,0.08); color: var(--green); border-color: rgba(0,229,160,0.2); }
+
+/* SCREENSHOT GRID */
+.shot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+.shot-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.shot-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,184,0,0.3);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+.shot-media {
+  position: relative;
+  height: 220px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.shot-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.shot-card:hover .shot-media img { transform: scale(1.05); }
+.shot-ph {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #0f0f1a, #1a1200);
+}
+.shot-ph-icon { font-size: 2.8rem; opacity: 0.3; }
+.shot-ph-text {
+  font-size: 0.75rem;
+  color: var(--muted);
+  border: 1px dashed var(--border2);
+  padding: 5px 12px;
+  border-radius: 5px;
+}
+.shot-body { padding: 18px; }
+.shot-title { font-family: var(--font-ui); font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+.shot-desc { font-size: 0.8rem; color: var(--muted2); line-height: 1.5; margin-bottom: 12px; }
+
+/* EMPTY */
+.empty-state {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 80px 20px;
+  background: var(--card);
+  border: 2px dashed var(--border2);
+  border-radius: 16px;
+}
+.empty-icon { font-size: 3.5rem; margin-bottom: 16px; opacity: 0.3; }
+.empty-title { font-family: var(--font-ui); font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+.empty-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.6; }
+.empty-label {
+  display: inline-block;
+  margin-top: 16px;
+  background: var(--gold-dim);
+  border: 1px solid var(--border2);
+  color: var(--gold);
+  font-size: 0.72rem;
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+}
 
 /* ═══ RESULTS STRIP ═══ */
 .results-section {
@@ -1070,14 +1070,6 @@ footer {
   font-size: 1.1rem;
   color: var(--gold);
   font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.footer-brand img {
-  width: auto;
-  height: 24px;
-  object-fit: contain;
 }
 .footer-links {
   display: flex;
@@ -1170,14 +1162,10 @@ footer {
 @media (max-width: 768px) {
   nav { padding: 14px 20px; }
   .nav-links { display: none; }
-  .nav-right { display: none !important; }
+  .nav-socials { display: none; }
   .hamburger { display: flex; }
   .hero { padding: 100px 20px 60px; }
   .hero-years { display: none; }
-  .hero-scroll { /* Ensure it centers on mobile */
-    left: 50%;
-    transform: translateX(-50%);
-  }
   .stats-strip { grid-template-columns: repeat(2, 1fr); }
   .stat-block:nth-child(2) { border-right: none; }
   .stat-block:nth-child(3) { border-right: 1px solid var(--border); }
@@ -1210,9 +1198,497 @@ footer {
 
 <nav id="main-nav">
   <div class="nav-logo">
-    <img src="data:image/png;base64,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ICFBAAICEpCAJCQhAAEIQBIQQAACgIAEAQgCEpCABCEICQQgCEBAkCQEJCBBSBCQhAAEIQACQgAQkACEgCAIQEACkIQECQISkIAEIUFCgBAQAhKQkAAEJAAhSQAChIQECEIAAhJCEgIQgIAEJAEJQoCAgBAkAIEABCSEACQgCEgAAkICkJAEBCAAkSCAEJAABCSACBKAAAQkIIAkJAQQkIAABISEECAkIUECEJAgIAEJQAACghCQACQkAQEgIAgIQAACEpCABCQEASQBCUgQkAABIAACEBACEpAgIEEoSAAQkACEgCQACUIAEJCABCQgQAACQgAQgCQIQEAqCQEIQBJCEBCSAAQgIEkIQEDaAAEIQAASEACBhBAkBCAIQkBAEJCABCkRSECCBCQIQEACEhAgCEhAAhIQAICEICQEIABJSAhAAAIQkBCAkEAAAhKAkJCEBAQgCQgBSAAJAAISQACSkCAACUhACAgJQoCEkAAkIAEISBAkQAhIQBKAICAIEpCABAgIAkIAghAkwABIQAAEJAgIQAACEJAAhIAkIAEISgISEBACEIAAAyABCQgCEpAAYyD+D00uR3lF7zNCAAAAAElFTkSuQmCC" alt="Digitreams">
-    Digitreams
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23FFB800'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' font-family='serif' fill='%23000' font-weight='bold'%3ED%3C/text%3E%3C/svg%3E" alt="Digitreams">
+    <span class="nav-brand">Digitreams</span>
   </div>
+
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#results">Results</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#reviews">Reviews</a>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="nav-socials">
+      <a href="https://facebook.com/digitreams" target="_blank" class="nav-social-icon" title="Facebook">f</a>
+      <a href="https://instagram.com/digitreams" target="_blank" class="nav-social-icon" title="Instagram">⊕</a>
+      <a href="https://linkedin.com/company/digitreams" target="_blank" class="nav-social-icon" title="LinkedIn">in</a>
+    </div>
+    <a href="https://wa.me/14063160688?text=Hi Digitreams, I saw your portfolio and want to discuss a potential project for my business." target="_blank" class="nav-cta">📞 Free Strategy Call</a>
+  </div>
+
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobile-nav">
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#portfolio" onclick="closeMenu()">Portfolio</a>
+  <a href="#results" onclick="closeMenu()">Results</a>
+  <a href="#pricing" onclick="closeMenu()">Pricing</a>
+  <a href="#reviews" onclick="closeMenu()">Reviews</a>
+  <a href="https://wa.me/14063160688" target="_blank" style="color:var(--green);">📱 WhatsApp</a>
+  <a href="mailto:info@digitreams.com" style="color:var(--gold);">✉️ Email</a>
+  <div style="display:flex;gap:12px;padding-top:8px;">
+    <a href="https://facebook.com" target="_blank" class="nav-social-icon">f</a>
+    <a href="https://instagram.com" target="_blank" class="nav-social-icon">⊕</a>
+    <a href="https://linkedin.com" target="_blank" class="nav-social-icon">in</a>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="pulse-dot"></span>
+      Accepting New Clients — USA Market
+    </div>
+
+    <h1 class="hero-headline">
+      <span class="line1">RESULTS-</span>
+      <span class="line2">DRIVEN</span>
+      <span class="line3">Digital Marketing Agency</span>
+    </h1>
+
+    <p class="hero-sub">
+      15+ years turning ad spend into measurable growth. AI-powered UGC ads,
+      Meta Ads, Google Ads & Social Media Management that actually converts.
+    </p>
+
+    <div class="hero-btns">
+      <a href="https://wa.me/14063160688" target="_blank" class="btn-gold">📞 Book Free Strategy Call</a>
+      <a href="#portfolio" class="btn-outline">🎬 View Our Work</a>
+    </div>
+  </div>
+
+  <div class="hero-years">
+    <div class="hero-years-num">15</div>
+    <div class="hero-years-label">Years of<br>Expertise</div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<div class="stats-strip">
+  <div class="stat-block">
+    <span class="stat-num">50+</span>
+    <div class="stat-label">Clients Served</div>
+    <div class="stat-platform">All Industries</div>
+  </div>
+  <div class="stat-block">
+    <span class="stat-num">3.8x</span>
+    <div class="stat-label">Average ROAS</div>
+    <div class="stat-platform">Meta Ads</div>
+  </div>
+  <div class="stat-block">
+    <span class="stat-num">200+</span>
+    <div class="stat-label">Campaigns Run</div>
+    <div class="stat-platform">Google & Meta</div>
+  </div>
+  <div class="stat-block">
+    <span class="stat-num">4.9★</span>
+    <div class="stat-label">Client Rating</div>
+    <div class="stat-platform">Verified Reviews</div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="section-intro">
+    <span class="section-eyebrow">What We Do</span>
+    <h2 class="section-title">Full-Stack Digital Marketing</h2>
+    <p class="section-desc">From AI-generated UGC videos to precision paid campaigns — we handle everything that drives revenue.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">🎬</span>
+      <div class="service-title">AI UGC Video Ads</div>
+      <div class="service-desc">Photorealistic AI-generated user content that converts like authentic testimonials — at 10x lower cost and turnaround in 24 hours.</div>
+      <div class="service-features">
+        <span class="sftag">13 Industries</span>
+        <span class="sftag">TikTok Ready</span>
+        <span class="sftag">Reels Format</span>
+        <span class="sftag">AI Avatars</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-icon">📘</span>
+      <div class="service-title">Facebook & Meta Ads</div>
+      <div class="service-desc">Full-funnel Meta campaigns with custom audiences, retargeting stacks, and creative testing systems built for scale.</div>
+      <div class="service-features">
+        <span class="sftag">Lead Gen</span>
+        <span class="sftag">E-Commerce</span>
+        <span class="sftag">Retargeting</span>
+        <span class="sftag">Lookalikes</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-icon">🔍</span>
+      <div class="service-title">Google Ads & PPC</div>
+      <div class="service-desc">Search, Display, YouTube & Shopping campaigns optimized for maximum CTR, Quality Score, and conversion rate.</div>
+      <div class="service-features">
+        <span class="sftag">Search Ads</span>
+        <span class="sftag">YouTube</span>
+        <span class="sftag">Shopping</span>
+        <span class="sftag">Local</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-icon">📱</span>
+      <div class="service-title">Social Media Management</div>
+      <div class="service-desc">Daily content creation, posting, community management, and organic growth strategy for Instagram, TikTok & Facebook.</div>
+      <div class="service-features">
+        <span class="sftag">Content Creation</span>
+        <span class="sftag">Scheduling</span>
+        <span class="sftag">Engagement</span>
+        <span class="sftag">Analytics</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-icon">🎯</span>
+      <div class="service-title">TikTok Ads</div>
+      <div class="service-desc">Trending-first creative strategy for TikTok's unique algorithm — native-feel ads that blend into the feed and convert.</div>
+      <div class="service-features">
+        <span class="sftag">Spark Ads</span>
+        <span class="sftag">TopView</span>
+        <span class="sftag">In-Feed</span>
+        <span class="sftag">UGC Style</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-icon">📊</span>
+      <div class="service-title">Performance Analytics</div>
+      <div class="service-desc">Real-time dashboards, weekly performance reports, A/B test insights, and full attribution tracking across all channels.</div>
+      <div class="service-features">
+        <span class="sftag">Custom Reports</span>
+        <span class="sftag">A/B Testing</span>
+        <span class="sftag">Attribution</span>
+        <span class="sftag">Forecasting</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio" class="portfolio-section">
+  <div class="section-intro">
+    <span class="section-eyebrow">Our Work</span>
+    <h2 class="section-title">Portfolio & Case Studies</h2>
+    <p class="section-desc">Browse AI UGC videos, Facebook Ad results, Google Ads data & Social Media work across 13 industries.</p>
+  </div>
+
+  <div class="main-tab-bar">
+    <button class="main-tab-btn active" onclick="switchMain('ugc',this)">🎬 AI UGC Videos</button>
+    <button class="main-tab-btn" onclick="switchMain('fb',this)">📘 Facebook Ads</button>
+    <button class="main-tab-btn" onclick="switchMain('google',this)">🔍 Google Ads</button>
+    <button class="main-tab-btn" onclick="switchMain('smm',this)">📱 Social Media</button>
+  </div>
+
+  <div class="tab-content active" id="tab-ugc">
+    <div class="cat-filter" id="ugc-cats">
+      <button class="cat-btn active" onclick="filterCat('ugc','all',this)">All Categories</button>
+      <button class="cat-btn" onclick="filterCat('ugc','realestate',this)">🏠 Real Estate</button>
+      <button class="cat-btn" onclick="filterCat('ugc','beauty',this)">💄 Beauty Salon</button>
+      <button class="cat-btn" onclick="filterCat('ugc','pet',this)">🐾 Pet Clinic</button>
+      <button class="cat-btn" onclick="filterCat('ugc','dental',this)">🦷 Dental</button>
+      <button class="cat-btn" onclick="filterCat('ugc','gym',this)">💪 Gym</button>
+      <button class="cat-btn" onclick="filterCat('ugc','restaurant',this)">🍕 Restaurant</button>
+      <button class="cat-btn" onclick="filterCat('ugc','roofing',this)">🏗️ Roofing</button>
+      <button class="cat-btn" onclick="filterCat('ugc','hvac',this)">❄️ HVAC</button>
+      <button class="cat-btn" onclick="filterCat('ugc','plumber',this)">🔧 Plumber</button>
+      <button class="cat-btn" onclick="filterCat('ugc','ecommerce',this)">🛍️ E-Commerce</button>
+      <button class="cat-btn" onclick="filterCat('ugc','homeimprove',this)">🏡 Home Improvement</button>
+      <button class="cat-btn" onclick="filterCat('ugc','digital',this)">💼 Digital Marketing</button>
+    </div>
+    <div class="vid-grid" id="ugc-grid"></div>
+  </div>
+
+  <div class="tab-content" id="tab-fb">
+    <div class="cat-filter">
+      <button class="cat-btn active" onclick="filterCat('fb','all',this)">All Categories</button>
+      <button class="cat-btn" onclick="filterCat('fb','realestate',this)">🏠 Real Estate</button>
+      <button class="cat-btn" onclick="filterCat('fb','beauty',this)">💄 Beauty Salon</button>
+      <button class="cat-btn" onclick="filterCat('fb','pet',this)">🐾 Pet Clinic</button>
+      <button class="cat-btn" onclick="filterCat('fb','dental',this)">🦷 Dental</button>
+      <button class="cat-btn" onclick="filterCat('fb','gym',this)">💪 Gym</button>
+      <button class="cat-btn" onclick="filterCat('fb','restaurant',this)">🍕 Restaurant</button>
+      <button class="cat-btn" onclick="filterCat('fb','ecommerce',this)">🛍️ E-Commerce</button>
+      <button class="cat-btn" onclick="filterCat('fb','digital',this)">💼 Digital</button>
+    </div>
+    <div class="shot-grid" id="fb-grid"></div>
+  </div>
+
+  <div class="tab-content" id="tab-google">
+    <div class="cat-filter">
+      <button class="cat-btn active" onclick="filterCat('google','all',this)">All Categories</button>
+      <button class="cat-btn" onclick="filterCat('google','realestate',this)">🏠 Real Estate</button>
+      <button class="cat-btn" onclick="filterCat('google','beauty',this)">💄 Beauty Salon</button>
+      <button class="cat-btn" onclick="filterCat('google','dental',this)">🦷 Dental</button>
+      <button class="cat-btn" onclick="filterCat('google','gym',this)">💪 Gym</button>
+      <button class="cat-btn" onclick="filterCat('google','hvac',this)">❄️ HVAC</button>
+      <button class="cat-btn" onclick="filterCat('google','plumber',this)">🔧 Plumber</button>
+      <button class="cat-btn" onclick="filterCat('google','digital',this)">💼 Digital</button>
+    </div>
+    <div class="shot-grid" id="google-grid"></div>
+  </div>
+
+  <div class="tab-content" id="tab-smm">
+    <div class="cat-filter">
+      <button class="cat-btn active" onclick="filterCat('smm','all',this)">All Categories</button>
+      <button class="cat-btn" onclick="filterCat('smm','realestate',this)">🏠 Real Estate</button>
+      <button class="cat-btn" onclick="filterCat('smm','beauty',this)">💄 Beauty Salon</button>
+      <button class="cat-btn" onclick="filterCat('smm','restaurant',this)">🍕 Restaurant</button>
+      <button class="cat-btn" onclick="filterCat('smm','gym',this)">💪 Gym</button>
+      <button class="cat-btn" onclick="filterCat('smm','ecommerce',this)">🛍️ E-Commerce</button>
+    </div>
+    <div class="shot-grid" id="smm-grid"></div>
+  </div>
+</section>
+
+<section id="results" class="results-section">
+  <div class="results-header">
+    <span class="section-eyebrow">Proven Performance</span>
+    <h2 class="section-title" style="margin-bottom:0;">Numbers That Matter</h2>
+  </div>
+  <div class="results-grid">
+    <div class="result-card">
+      <div class="result-platform">Meta / Facebook Ads</div>
+      <div class="result-metric">6.1x</div>
+      <div class="result-label">Average Return on Ad Spend</div>
+      <div class="result-bar-wrap"><div class="result-bar" data-width="85%" style="width:0"></div></div>
+    </div>
+    <div class="result-card">
+      <div class="result-platform">Google Ads</div>
+      <div class="result-metric">8.4%</div>
+      <div class="result-label">Average Click-Through Rate</div>
+      <div class="result-bar-wrap"><div class="result-bar" data-width="70%" style="width:0"></div></div>
+    </div>
+    <div class="result-card">
+      <div class="result-platform">AI UGC Campaigns</div>
+      <div class="result-metric">-55%</div>
+      <div class="result-label">Cost Per Acquisition Reduction</div>
+      <div class="result-bar-wrap"><div class="result-bar" data-width="55%" style="width:0"></div></div>
+    </div>
+    <div class="result-card">
+      <div class="result-platform">TikTok Ads</div>
+      <div class="result-metric">2.1M</div>
+      <div class="result-label">Organic Reach Generated</div>
+      <div class="result-bar-wrap"><div class="result-bar" data-width="90%" style="width:0"></div></div>
+    </div>
+    <div class="result-card">
+      <div class="result-platform">Social Media Mgmt</div>
+      <div class="result-metric">340%</div>
+      <div class="result-label">Inbound Lead Increase</div>
+      <div class="result-bar-wrap"><div class="result-bar" data-width="92%" style="width:0"></div></div>
+    </div>
+    <div class="result-card">
+      <div class="result-platform">Lead Generation</div>
+      <div class="result-metric">148</div>
+      <div class="result-label">Qualified Leads in 30 Days</div>
+      <div class="result-bar-wrap"><div class="result-bar" data-width="75%" style="width:0"></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="pricing-section">
+  <div class="section-intro">
+    <span class="section-eyebrow">Transparent Pricing</span>
+    <h2 class="section-title">Choose Your Growth Plan</h2>
+    <p class="section-desc">No hidden fees. No lock-in contracts. Cancel anytime. All plans include onboarding call & weekly reports.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-tier">Starter</div>
+      <div class="price-name">Launch Package</div>
+      <div class="price-amount"><span>$</span>997</div>
+      <div class="price-per">/ month · min 2 months</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>1 Ad Platform (Meta or Google)</li>
+        <li>Up to $3K ad spend managed</li>
+        <li>5 AI UGC videos / month</li>
+        <li>Weekly performance report</li>
+        <li>Dedicated account manager</li>
+        <li class="no">Multi-platform campaigns</li>
+        <li class="no">Custom audience research</li>
+        <li class="no">Social media management</li>
+      </ul>
+      <a href="https://wa.me/14063160688" target="_blank" class="price-btn price-btn-outline">Get Started →</a>
+    </div>
+
+    <div class="price-card featured">
+      <div class="price-badge">Most Popular</div>
+      <div class="price-tier">Growth</div>
+      <div class="price-name">Scale Package</div>
+      <div class="price-amount"><span>$</span>1,997</div>
+      <div class="price-per">/ month · min 2 months</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>Meta + Google Ads (both)</li>
+        <li>Up to $10K ad spend managed</li>
+        <li>15 AI UGC videos / month</li>
+        <li>Social Media Management (2 platforms)</li>
+        <li>Custom audience & retargeting</li>
+        <li>A/B creative testing</li>
+        <li>Bi-weekly strategy call</li>
+        <li class="no">Priority 24h support</li>
+      </ul>
+      <a href="https://wa.me/14063160688" target="_blank" class="price-btn price-btn-gold">Book Free Call →</a>
+    </div>
+
+    <div class="price-card">
+      <div class="price-tier">Enterprise</div>
+      <div class="price-name">Full Agency</div>
+      <div class="price-amount"><span>$</span>3,997</div>
+      <div class="price-per">/ month · custom terms</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>All platforms (Meta, Google, TikTok)</li>
+        <li>Unlimited ad spend</li>
+        <li>30+ AI UGC videos / month</li>
+        <li>Full Social Media Management</li>
+        <li>Dedicated creative team</li>
+        <li>Priority 24h support</li>
+        <li>Weekly strategy calls</li>
+        <li>Custom dashboards & reporting</li>
+      </ul>
+      <a href="https://wa.me/14063160688" target="_blank" class="price-btn price-btn-outline">Contact Us →</a>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="reviews-section">
+  <div class="section-intro">
+    <span class="section-eyebrow">Client Testimonials</span>
+    <h2 class="section-title">What Our Clients Say</h2>
+  </div>
+
+  <div class="rating-display">
+    <div class="rating-big-num">4.9</div>
+    <div>
+      <div class="rating-stars">★★★★★</div>
+      <div class="rating-sub">Based on 10 verified client reviews</div>
+    </div>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="r-stars">★★★★★</div>
+      <div class="r-text">"Digitreams completely transformed our ad performance. We went from burning money to a consistent 4x return within 6 weeks."</div>
+      <div class="r-author">
+        <div class="r-avatar">SK</div>
+        <div><div class="r-name">Sarah K.</div><div class="r-role">Owner, Glow Beauty Studio</div><span class="r-industry">Beauty & Skincare</span></div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="r-stars">★★★★★</div>
+      <div class="r-text">"The AI UGC videos looked more authentic than real creator content. My CPA dropped overnight. Best ROI on any marketing spend."</div>
+      <div class="r-author">
+        <div class="r-avatar">MR</div>
+        <div><div class="r-name">Mike R.</div><div class="r-role">Founder, StyleHive</div><span class="r-industry">E-Commerce</span></div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="r-stars">★★★★★</div>
+      <div class="r-text">"148 qualified leads in 30 days from Facebook Ads alone. The team knows exactly what they're doing."</div>
+      <div class="r-author">
+        <div class="r-avatar">JD</div>
+        <div><div class="r-name">James D.</div><div class="r-role">Director, Premier Real Estate</div><span class="r-industry">Real Estate</span></div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="r-stars">★★★★★</div>
+      <div class="r-text">"Our Google Ads CTR went from 1.8% to 8.4%! 64 new patient appointments in the first month alone."</div>
+      <div class="r-author">
+        <div class="r-avatar">DP</div>
+        <div><div class="r-name">Dr. Daniel P.</div><div class="r-role">Owner, SmilePro Dental</div><span class="r-industry">Healthcare</span></div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="r-stars">★★★★★</div>
+      <div class="r-text">"TikTok was a mystery to us until Digitreams stepped in. 2.1M organic reach — our restaurant is booked out every weekend!"</div>
+      <div class="r-author">
+        <div class="r-avatar">TC</div>
+        <div><div class="r-name">Tony C.</div><div class="r-role">CEO, Flavor Fusion Group</div><span class="r-industry">Food & Beverage</span></div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="r-stars">★★★★★</div>
+      <div class="r-text">"Our law firm PPC campaigns were a disaster before. They cut CPC by 55% and tripled conversions."</div>
+      <div class="r-author">
+        <div class="r-avatar">RJ</div>
+        <div><div class="r-name">Rachel J.</div><div class="r-role">Managing Partner, Justice Law</div><span class="r-industry">Legal</span></div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="r-stars">★★★★★</div>
+      <div class="r-text">"LinkedIn became our #1 lead source after 3 months. 340% increase in inbound leads is not something I take lightly."</div>
+      <div class="r-author">
+        <div class="r-avatar">BW</div>
+        <div><div class="r-name">Brian W.</div><div class="r-role">CEO, CloudStack SaaS</div><span class="r-industry">B2B / SaaS</span></div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="r-stars">★★★★★</div>
+      <div class="r-text">"6.1x ROAS consistently — my competitors can't figure out how we're doing it. I'll never share this secret agency!"</div>
+      <div class="r-author">
+        <div class="r-avatar">NP</div>
+        <div><div class="r-name">Nina P.</div><div class="r-role">Owner, Urban Threads</div><span class="r-industry">Fashion / E-Commerce</span></div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="r-stars">★★★★★</div>
+      <div class="r-text">"Scaled from $500 to $5,000/month in ad spend and ROAS actually improved! Their creative strategy is unlike anything."</div>
+      <div class="r-author">
+        <div class="r-avatar">AL</div>
+        <div><div class="r-name">Amanda L.</div><div class="r-role">CMO, GlowSkin Co.</div><span class="r-industry">Beauty & Wellness</span></div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="r-stars">★★★★★</div>
+      <div class="r-text">"The AI UGC content feels genuine, hooks are sharp, and our gym memberships doubled in 45 days."</div>
+      <div class="r-author">
+        <div class="r-avatar">KS</div>
+        <div><div class="r-name">Kevin S.</div><div class="r-role">Operations Manager, FitLife Studios</div><span class="r-industry">Fitness & Wellness</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="cta-glow"></div>
+  <h2>Ready to <span style="color:var(--gold)">Scale Your Brand?</span></h2>
+  <p>Book a free 30-minute strategy call. We'll audit your current marketing and show you exactly where growth is being left on the table.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/14063160688" target="_blank" class="btn-gold" style="font-size:1rem;padding:15px 36px;">📞 WhatsApp Now — It's Free</a>
+    <a href="mailto:info@digitreams.com" class="btn-outline" style="font-size:1rem;padding:15px 36px;">✉️ Send Email</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Digitreams</div>
   <div class="footer-links">
     <a href="mailto:info@digitreams.com">info@digitreams.com</a>
     <a href="https://wa.me/14063160688" target="_blank">+1 (406) 316-0688</a>
@@ -1402,5 +1878,3 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
-
-```
