@@ -128,12 +128,12 @@ section{position:relative;z-index:2;}
 .vtag.g{background:rgba(0,229,160,.07);color:var(--green);border-color:rgba(0,229,160,.2);}
 
 /* SCREENSHOT */
-.shot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+.shot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
 .shot-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .3s;}
-.shot-card:hover{transform:translateY(-4px);border-color:rgba(255,184,0,.3);box-shadow:0 16px 40px rgba(0,0,0,.5);}
-.shot-media{position:relative;height:185px;background:var(--surface);overflow:hidden;}
-.shot-media img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
-.shot-card:hover .shot-media img{transform:scale(1.05);}
+.shot-card:hover{transform:translateY(-6px);border-color:rgba(255,184,0,.35);box-shadow:0 20px 48px rgba(0,0,0,.6);}
+.shot-media{position:relative;padding-top:133.33%;background:linear-gradient(135deg,#0d0d1a 0%,#121225 60%,#0a0a14 100%);overflow:hidden;}
+.shot-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:6px;transition:transform .4s;}
+.shot-card:hover .shot-media img{transform:scale(1.03);}
 .shot-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#0f0f1a,#1a1200);}
 .shot-ph-icon{font-size:2.2rem;opacity:.2;}
 .shot-ph-text{font-size:.68rem;color:var(--muted);border:1px dashed var(--border2);padding:3px 8px;border-radius:4px;}
@@ -885,7 +885,40 @@ const DATA={
     {id:'s95pkfhW2WE',cat:'restaurant',title:'Foodie Recommendation UGC',badge:'AI UGC',result:'Booked Out'},
     {id:'t2PmGfLd_Vw',cat:'restaurant',title:'Culinary Excellence Promo',badge:'AI UGC',result:'Instagram Ready'}
   ],
-  fb:[],google:[],smm:[]
+  fb:[
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-01.jpg',cat:'realestate',title:'Real Estate Lead Gen Campaign',result:'148 Leads'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-02.jpg',cat:'realestate',title:'Property Listing Ads — USA',result:'$8 CPL'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-03.jpg',cat:'beauty',title:'Beauty Salon Promo Campaign',result:'-40% CPA'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-04.jpg',cat:'beauty',title:'Skincare Brand — Meta Ads',result:'4.2x ROAS'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-05.jpg',cat:'dental',title:'Dental Clinic Lead Campaign',result:'64 Bookings'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-06.jpg',cat:'dental',title:'Smile Studio — FB Ads',result:'Trust Driven'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-07.jpg',cat:'ecommerce',title:'E-Commerce Scale Campaign',result:'6.1x ROAS'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-08.jpg',cat:'ecommerce',title:'Product Launch — Meta Ads',result:'+320% Sales'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-09.jpg',cat:'gym',title:'Gym Membership Drive',result:'High CTR'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-10.jpg',cat:'gym',title:'Fitness Studio Lead Gen',result:'52 Sign-ups'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-11.jpg',cat:'restaurant',title:'Restaurant Promo Campaign',result:'2.1M Reach'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-12.jpg',cat:'restaurant',title:'Food Brand Awareness Ads',result:'Booked Out'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-13.jpg',cat:'realestate',title:'Luxury Homes — Retargeting',result:'3.8x ROAS'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-14.jpg',cat:'beauty',title:'Salon Retargeting Funnel',result:'Meta Ready'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-15.jpg',cat:'ecommerce',title:'Flash Sale Campaign',result:'-55% CPA'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-16.jpg',cat:'dental',title:'Dental Implants — Lead Ads',result:'Low CPL'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-17.jpg',cat:'gym',title:'CrossFit Studio Campaign',result:'ROI Proven'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-18.jpg',cat:'realestate',title:'Commercial Property Ads',result:'Scale Fast'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-19.jpg',cat:'beauty',title:'Lash Studio Growth Ads',result:'High Volume'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/meta/meta-20.jpg',cat:'ecommerce',title:'Brand Awareness + Conversion',result:'Full Funnel'}
+  ],
+  google:[
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/google/google-01.jpg',cat:'dental',title:'Dental Clinic — Google Search',result:'8.4% CTR'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/google/google-02.jpg',cat:'dental',title:'Orthodontist PPC Campaign',result:'64 Patients'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/google/google-03.jpg',cat:'hvac',title:'HVAC Local Search Ads',result:'Local Reach'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/google/google-04.jpg',cat:'hvac',title:'AC Repair — Google Ads',result:'-55% CPC'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/google/google-05.jpg',cat:'plumber',title:'Emergency Plumber — PPC',result:'High Intent'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/google/google-06.jpg',cat:'plumber',title:'Plumbing Services Search Ads',result:'Top Position'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/google/google-07.jpg',cat:'realestate',title:'Real Estate Google Ads',result:'3.2x ROAS'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/google/google-08.jpg',cat:'beauty',title:'Beauty Salon — Local Ads',result:'Booked Out'},
+    {img:'https://digitreams.github.io/digitreams-portfolio/screenshots/google/google-09.jpg',cat:'dental',title:'Dental Implants — PPC',result:'Quality Score 9'}
+  ],
+  smm:[]
 };
 function switchMain(tab,btn){document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.main-tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+tab).classList.add('active');btn.classList.add('active');}
 function switchPricing(id,btn){document.querySelectorAll('.pricing-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.pricing-tabs .cat-btn').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');}
